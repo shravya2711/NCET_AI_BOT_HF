@@ -18,7 +18,7 @@ summarizer = load_summarizer()
 
 st.title("AI Text Summarizer")
 
-text = st.text_area("Enter text:")
+text = st.text_area("Enter summarizing text:")
 
 if st.button("Summarize"):
     if text.strip():
