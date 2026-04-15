@@ -3,17 +3,20 @@ from transformers import pipeline
 
 @st.cache_resource
 def load_summarizer():
-    return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
-
-summarizer = load_summarizer()
+    return pipeline(
+        "summarization",
+        model="sshleifer/distilbart-cnn-12-6"
+    )
 
 st.title("AI Text Summarizer")
 st.write("Enter a long text below, and get a concise summary!")
 
+summarizer = load_summarizer()
+
 long_text = st.text_area("Enter text to summarize:", height=200)
 
-max_length = st.slider("Max Summary Length", min_value=50, max_value=300, value=130)
-min_length = st.slider("Min Summary Length", min_value=20, max_value=100, value=30)
+max_length = st.slider("Max Summary Length", 50, 300, 130)
+min_length = st.slider("Min Summary Length", 20, 100, 30)
 
 if st.button("Summarize"):
     if long_text.strip():
@@ -25,9 +28,7 @@ if st.button("Summarize"):
                 do_sample=False
             )
             
-            summary_text = summary[0]['summary_text']  # ✅ FIX HERE
-            
             st.subheader("Summary:")
-            st.success(summary_text)
+            st.success(summary[0]['summary_text'])  # ✅ FIXED
     else:
         st.warning("Please enter some text to summarize.")
