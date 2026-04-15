@@ -16,7 +16,7 @@ def load_summarizer():
 
 summarizer = load_summarizer()
 
-st.title("AI Text Summarizer")
+st.title("Text Summarizer")
 
 text = st.text_area("Enter summarizing text:")
 
